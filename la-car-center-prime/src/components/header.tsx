@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const logo = "https://i.ibb.co/p6bqfcTQ/Design-sem-nome-4-removebg-preview.png"
+const logo = "https://i.ibb.co/XrcnZ96x/Design-sem-nome-4.png";
 
-const Navbar = styled(motion.nav)<{ scrolled: boolean }>`
+const Navbar = styled(motion.nav)<{ $scrolled: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  padding: ${props => props.scrolled ? '15px 0' : '20px 0'};
+  padding: ${props => props.$scrolled ? '15px 0' : '20px 0'};
   z-index: 1000;
   transition: all 0.3s ease;
-  background: ${props => props.scrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent'};
-  border-bottom: ${props => props.scrolled ? '1px solid #d8a71e' : 'none'};
+  background: ${props => props.$scrolled ? 'rgba(10, 10, 10, 0.95)' : 'transparent'};
+  border-bottom: ${props => props.$scrolled ? '1px solid #d8a71e' : 'none'};
 `;
 
 const NavbarContainer = styled.div`
@@ -29,7 +29,7 @@ const Logo = styled.img`
   height: 50px;
 `;
 
-const NavMenu = styled.ul<{ isOpen: boolean }>`
+const NavMenu = styled.ul<{ $isOpen: boolean }>`
   display: flex;
   gap: 30px;
   list-style: none;
@@ -37,7 +37,7 @@ const NavMenu = styled.ul<{ isOpen: boolean }>`
   @media (max-width: 768px) {
     position: fixed;
     top: 80px;
-    left: ${props => props.isOpen ? '0' : '-100%'};
+    left: ${props => props.$isOpen ? '0' : '-100%'};
     width: 100%;
     height: calc(100vh - 80px);
     background: #0a0a0a;
@@ -109,13 +109,13 @@ const Header: React.FC<HeaderProps> = ({ menuOpen, setMenuOpen, scrollToSection 
   }, []);
 
   return (
-    <Navbar scrolled={scrolled}>
+    <Navbar $scrolled={scrolled}>
       <NavbarContainer>
         <Logo src={logo} alt="LA Car Center Prime" />
         <MenuToggle onClick={() => setMenuOpen(!menuOpen)}>
           <i className={`fas fa-${menuOpen ? 'times' : 'bars'}`}></i>
         </MenuToggle>
-        <NavMenu isOpen={menuOpen}>
+        <NavMenu $isOpen={menuOpen}>
           <NavItem><a href="#home" onClick={(e) => scrollToSection(e, 'home')}>INÍCIO</a></NavItem>
           <NavItem><a href="#about" onClick={(e) => scrollToSection(e, 'about')}>SOBRE</a></NavItem>
           <NavItem><a href="#services" onClick={(e) => scrollToSection(e, 'services')}>SERVIÇOS</a></NavItem>

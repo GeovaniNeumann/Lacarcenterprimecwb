@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const logo = "https://i.ibb.co/p6bqfcTQ/Design-sem-nome-4-removebg-preview.png"
+const logo = "https://i.ibb.co/XrcnZ96x/Design-sem-nome-4.png";
 
 const FooterSection = styled.footer`
   background: #0a0a0a;
@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const FooterLogo = styled.img`
-  height: 90px;
+  height: 50px;
   margin-bottom: 20px;
 `;
 
@@ -64,7 +64,7 @@ const FooterLink = styled.a`
   }
 `;
 
-const Copyright = styled.p`
+const Copyright = styled.div`
   color: rgba(255,255,255,0.5);
   font-size: 0.85rem;
   padding-top: 20px;
@@ -105,7 +105,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
         </FooterLinks>
         <Copyright>
           <p>© LA Car Center Prime - Todos os direitos reservados.</p>
-          <p>Desenvolvido por <a href="https://portifoliogeovani.netlify.app/" target="_blank">Geovani Neumann</a></p>
+          <div>Desenvolvido por <a href="https://portifoliogeovani.netlify.app/" target="_blank">Geovani Neumann</a></div>
         </Copyright>
       </Container>
     </FooterSection>
