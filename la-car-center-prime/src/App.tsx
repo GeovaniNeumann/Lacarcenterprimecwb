@@ -25,6 +25,13 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  /* CORREÇÃO PARA SCROLL LATERAL */
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
   html {
     scroll-behavior: smooth;
   }
@@ -34,12 +41,32 @@ const GlobalStyle = createGlobalStyle`
     color: var(--light);
     font-family: 'Inter', sans-serif;
     overflow-x: hidden;
+    width: 100%;
+  }
+
+  #root {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
 
   h1, h2, h3, h4 {
     font-family: 'Orbitron', sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
   }
 
   ::-webkit-scrollbar {
@@ -54,11 +81,25 @@ const GlobalStyle = createGlobalStyle`
     background: var(--primary);
     border-radius: 5px;
   }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .container {
+      padding: 0 12px;
+    }
+  }
 `;
 
 const AppContainer = styled.div`
   position: relative;
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
 `;
 
 const BgImage = styled.div`
@@ -100,10 +141,16 @@ const FloatBtn = styled.a`
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
   transition: all 0.3s ease;
   z-index: 999;
+  text-decoration: none; /* Remove underline do link */
 
   &:hover {
     transform: scale(1.1);
     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+    text-decoration: none;
+  }
+
+  i, svg {
+    text-decoration: none;
   }
 `;
 
@@ -184,7 +231,7 @@ function App() {
         <Contact />
         <Footer scrollToSection={scrollToSection} />
 
-        <FloatBtn href="https://wa.me/554135013045" target="_blank">
+        <FloatBtn href="https://wa.me/554135013045" target="_blank" rel="noopener noreferrer">
           <i className="fab fa-whatsapp"></i>
         </FloatBtn>
 
