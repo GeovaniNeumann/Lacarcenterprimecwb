@@ -245,3 +245,5 @@ function App() {
 }
 
 export default App;
+
+// Atualização do projeto
