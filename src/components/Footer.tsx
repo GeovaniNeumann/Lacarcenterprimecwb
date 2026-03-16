@@ -16,8 +16,10 @@ const Container = styled.div`
 `;
 
 const FooterLogo = styled.img`
-  height: 50px;
-  margin-bottom: 20px;
+  height: 60px; /* Aumentei um pouco para dar mais destaque */
+  display: block;
+  margin: 0 auto 20px; /* O auto nas laterais centraliza o bloco */
+  object-fit: contain;
 `;
 
 const SocialLinks = styled.div`
