@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './components/header';
 import Hero from './components/Hero';
@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
     --dark: #0a0a0a;
     --light: #ddd7d7;
     --gray: #1a1a1a;
+    --dark-gray: #111111;
   }
 
   * {
@@ -141,7 +142,9 @@ const FloatBtn = styled.a`
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
   transition: all 0.3s ease;
   z-index: 999;
-  text-decoration: none; /* Remove underline do link */
+  text-decoration: none;
+  border: none;
+  outline: none;
 
   &:hover {
     transform: scale(1.1);
@@ -151,6 +154,14 @@ const FloatBtn = styled.a`
 
   i, svg {
     text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    bottom: 20px;
+    right: 20px;
+    width: 55px;
+    height: 55px;
+    font-size: 1.8rem;
   }
 `;
 
@@ -168,12 +179,14 @@ const Modal = styled.div<{ $show: boolean }>`
   opacity: ${props => props.$show ? 1 : 0};
   pointer-events: ${props => props.$show ? 'all' : 'none'};
   transition: opacity 0.3s ease;
+  padding: 20px;
 `;
 
 const ModalImg = styled.img`
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%;
+  max-height: 90vh;
   border-radius: 5px;
+  object-fit: contain;
 `;
 
 const ModalClose = styled.span`
@@ -184,10 +197,27 @@ const ModalClose = styled.span`
   color: white;
   cursor: pointer;
   transition: all 0.3s ease;
+  z-index: 2001;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+  border-radius: 50%;
 
   &:hover {
     color: var(--primary);
     transform: rotate(90deg);
+    background: rgba(0,0,0,0.8);
+  }
+
+  @media (max-width: 768px) {
+    top: 15px;
+    right: 15px;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
   }
 `;
 
@@ -195,6 +225,15 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [modalImage, setModalImage] = useState('');
+
+  // Efeito para prevenir scroll quando modal está aberto
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [modalOpen]);
 
   const openModal = (imgSrc: string) => {
     setModalImage(imgSrc);
@@ -231,7 +270,12 @@ function App() {
         <Contact />
         <Footer scrollToSection={scrollToSection} />
 
-        <FloatBtn href="https://wa.me/554135013045" target="_blank" rel="noopener noreferrer">
+        <FloatBtn 
+          href="https://wa.me/554135013045" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          aria-label="WhatsApp"
+        >
           <i className="fab fa-whatsapp"></i>
         </FloatBtn>
 
@@ -245,5 +289,3 @@ function App() {
 }
 
 export default App;
-
-// Atualização do projeto
