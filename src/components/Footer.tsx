@@ -107,7 +107,7 @@ const Footer: React.FC<FooterProps> = ({ scrollToSection }) => {
         </FooterLinks>
         <Copyright>
           <p>© LA Car Center Prime - Todos os direitos reservados.</p>
-          <div>Desenvolvido por <a href="https://portifoliogeovani.netlify.app/" target="_blank">Geovani Neumann</a></div>
+          <div>Desenvolvido por <a href="https://portifolio-geovani.vercel.app/" target="_blank">Geovani Neumann</a></div>
         </Copyright>
       </Container>
     </FooterSection>
